@@ -69,4 +69,9 @@ public class TodoService {
                 .map(TodoResponseDTO::new)
                 .collect(Collectors.toList());
     }
+    public TodoResponseDTO getTodoById(String id) {
+        Todo todo = todoRepository.findById(id)
+                .orElseThrow(() -> new TodoNotFoundExecption(id));
+        return new TodoResponseDTO(todo);
+    }
 }
